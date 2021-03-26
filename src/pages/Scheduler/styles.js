@@ -128,3 +128,31 @@ export const TextWhite = styled.Text`
   font-weight: bold;
   color: #fff;
 `;
+
+// ------------------- HitMapWeekContainer -----------------
+
+export const HitMapWeekContainer = styled.View`
+  /* border: 0.5px solid black; */
+  margin: 25px 0;
+`;
+
+export const DaysHitMap = styled.View`
+  flex-direction: row;
+  flex-wrap: wrap;
+  width: 90%;
+  margin: 0 auto;
+`;
+
+export const MonthHitGroup = styled.View`
+  border: 1px solid black;
+  justify-content: center;
+  align-items: center;
+  width: 70px;
+  height: 40px;
+
+  background-color: #ffcd1e;
+`;
+
+export const MonthHit = styled.Text`
+  font-size: 20px;
+`;

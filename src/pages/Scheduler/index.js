@@ -24,11 +24,48 @@ import {
   RedGroup,
   GreenGroup,
   TextWhite,
+  HitMapWeekContainer,
+  DaysHitMap,
+  MonthHitGroup,
+  MonthHit,
 } from "./styles";
 
 const Scheduler = () => {
   const [province, setProvince] = useState("CIDADE");
   const [servicePoint, setServicePoint] = useState("PONTO");
+
+  const days = [
+    { day: 1, status: "available" },
+    { day: 2, status: "available" },
+    { day: 3, status: "available" },
+    { day: 4, status: "available" },
+    { day: 5, status: "unavailable" },
+    { day: 6, status: "available" },
+    { day: 7, status: "unavailable" },
+    { day: 8, status: "unavailable" },
+    { day: 9, status: "available" },
+    { day: 10, status: "available" },
+    { day: 11, status: "available" },
+    { day: 12, status: "unavailable" },
+    { day: 13, status: "unavailable" },
+    { day: 14, status: "available" },
+    { day: 15, status: "available" },
+    { day: 16, status: "unavailable" },
+    { day: 17, status: "unavailable" },
+    { day: 18, status: "available" },
+    { day: 19, status: "available" },
+    { day: 20, status: "available" },
+    { day: 21, status: "unavailable" },
+    { day: 22, status: "available" },
+    { day: 23, status: "available" },
+    { day: 24, status: "unavailable" },
+    { day: 25, status: "available" },
+    { day: 26, status: "unavailable" },
+    { day: 27, status: "available" },
+    { day: 28, status: "unavailable" },
+    { day: 29, status: "available" },
+    { day: 30, status: "available" },
+  ];
 
   return (
     <Container>
@@ -88,7 +125,16 @@ const Scheduler = () => {
             </ViewMonthText>
           </HitMonthContainer>
 
-          {/* <HitMapWeekContainer></HitMapWeekContainer> */}
+          <HitMapWeekContainer>
+            <Text>Selecione o dia:</Text>
+            <DaysHitMap>
+              {days.map((item) => (
+                <MonthHitGroup key={item.day}>
+                  <MonthHit>{item.day}</MonthHit>
+                </MonthHitGroup>
+              ))}
+            </DaysHitMap>
+          </HitMapWeekContainer>
 
           <View>
             <Text>Descrição dos dias:</Text>
