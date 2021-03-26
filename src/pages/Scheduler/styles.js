@@ -67,13 +67,14 @@ export const ViewMonth = styled.View`
 
 export const ButtonGroup = styled.TouchableOpacity`
   color: #121212;
-  background-color: #dedede;
   border-radius: 4px;
 
   width: 40%;
   justify-content: center;
   align-items: center;
   padding: 10px;
+
+  background-color: ${(props) => (props.disabled ? `#dedede` : `#e2d6ff`)};
 `;
 
 export const TextGroup = styled.Text`
@@ -165,7 +166,7 @@ export const Button = styled.TouchableOpacity`
 
   height: 44px;
   width: 90%;
-  background-color: #5929cc;
+  background-color: ${(props) => (props.disabled ? `#dedede` : `#5929cc`)};
   border-radius: 6px;
 
   margin: 15px auto;

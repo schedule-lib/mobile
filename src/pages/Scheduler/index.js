@@ -1,4 +1,4 @@
-import React, { useState, useCallback } from "react";
+import React, { useState, useCallback, useEffect } from "react";
 import { StyleSheet, ScrollView, View, Alert } from "react-native";
 import RNPickerSelect from "react-native-picker-select";
 
@@ -90,15 +90,11 @@ const Scheduler = () => {
   ];
 
   // CALENDAR FUNCTIONS
-  const handleCompleted = useCallback(
-    (day) => {
-      setDayChoosed(+day);
-      if (province?.value && servicePoint?.value && month.name && dayChoosed) {
-        setIsCompleted(true);
-      }
-    },
-    [dayChoosed]
-  );
+  const handleCompleted = useCallback(() => {
+    if (province?.value && servicePoint?.value && month.name && dayChoosed) {
+      setIsCompleted(true);
+    }
+  }, [dayChoosed]);
   function handleButtonStatus() {
     if (province?.value && servicePoint?.value) {
       return false;
@@ -151,6 +147,10 @@ const Scheduler = () => {
       return 0;
     }
   }
+
+  useEffect(() => {
+    handleCompleted();
+  }, [handleCompleted]);
 
   return (
     <Container>
@@ -224,7 +224,7 @@ const Scheduler = () => {
             </DaysHitMap>
 
             {isCompleted && (
-              <Button>
+              <Button disabled={handleButtonStatus()}>
                 <ButtonText>Escolher horário</ButtonText>
               </Button>
             )}
