@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { StyleSheet, ScrollView } from "react-native";
+import { StyleSheet, ScrollView, View } from "react-native";
 import RNPickerSelect from "react-native-picker-select";
 
 import {
@@ -12,6 +12,13 @@ import {
   TextPicker,
   LocalView,
   Local,
+  HitMapContainer,
+  HitMonthContainer,
+  ViewMonth,
+  ButtonGroup,
+  TextGroup,
+  ViewMonthText,
+  TextMonth,
 } from "./styles";
 
 const Scheduler = () => {
@@ -31,7 +38,6 @@ const Scheduler = () => {
               <Text>Provincia de atendimento</Text>
               <RNPickerSelect
                 onValueChange={(value) => setProvince(value)}
-                placeholder="Seleciona uma cidade"
                 items={[
                   { label: "Luanda", value: "luanda", default: true },
                   { label: "Benguela", value: "benguela" },
@@ -47,7 +53,6 @@ const Scheduler = () => {
               <Text>Ponto de atendimento</Text>
               <RNPickerSelect
                 onValueChange={(value) => setServicePoint(value)}
-                placeholder="Seleciona um ponto"
                 items={[
                   { label: "Murro bento", value: "Murro bento" },
                   { label: "Kilamba kiaxi", value: "Kilamba kiaxi" },
@@ -62,38 +67,38 @@ const Scheduler = () => {
           </LocalView>
         </ServiceGroup>
 
-        {/* <HitMapContainer>
-        <HitMonthContainer>
-          <View>
-            <PrevGroup>
-              <Text>anterior</Text>
-            </PrevGroup>
-            <NextGroup>
-              <Text>Próximo</Text>
-            </NextGroup>
-          </View>
+        <HitMapContainer>
+          <HitMonthContainer>
+            <ViewMonth>
+              <ButtonGroup>
+                <TextGroup>anterior</TextGroup>
+              </ButtonGroup>
+              <ButtonGroup>
+                <TextGroup>Próximo</TextGroup>
+              </ButtonGroup>
+            </ViewMonth>
 
-          <View>
-            <Text>FEVEREIRO</Text>
-          </View>
-        </HitMonthContainer>
+            <ViewMonthText>
+              <TextMonth>FEVEREIRO</TextMonth>
+            </ViewMonthText>
+          </HitMonthContainer>
 
-        <HitMapWeekContainer></HitMapWeekContainer>
+          {/* <HitMapWeekContainer></HitMapWeekContainer>
 
-        <DescriptionContainer>
-          <WhiteGroup>
-            <Text>Disponível</Text>
-          </WhiteGroup>
+          <DescriptionContainer>
+            <WhiteGroup>
+              <Text>Disponível</Text>
+            </WhiteGroup>
 
-          <RedGroup>
-            <Text>Indisponível</Text>
-          </RedGroup>
+            <RedGroup>
+              <Text>Indisponível</Text>
+            </RedGroup>
 
-          <GreenGroup>
-            <Text>Selecionado</Text>
-          </GreenGroup>
-        </DescriptionContainer>
-      </HitMapContainer> */}
+            <GreenGroup>
+              <Text>Selecionado</Text>
+            </GreenGroup>
+          </DescriptionContainer> */}
+        </HitMapContainer>
       </ScrollView>
     </Container>
   );

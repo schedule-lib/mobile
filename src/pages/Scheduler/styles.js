@@ -17,7 +17,7 @@ export const Strong = styled.Text`
 
 export const ServiceGroup = styled.View`
   /* margin: 20px auto; */
-  height: 200px;
+  margin-bottom: 20px;
   padding: 10px;
 `;
 
@@ -51,3 +51,41 @@ export const LocalView = styled.View`
 `;
 
 export const Local = styled.View``;
+
+// HITMAP-CONATINER
+
+export const HitMapContainer = styled.View`
+  padding: 10px;
+`;
+
+export const HitMonthContainer = styled.View``;
+
+export const ViewMonth = styled.View`
+  flex-direction: row;
+  justify-content: space-evenly;
+`;
+
+export const ButtonGroup = styled.TouchableOpacity`
+  color: #121212;
+  background-color: #dedede;
+  border-radius: 4px;
+
+  width: 40%;
+  justify-content: center;
+  align-items: center;
+  padding: 10px;
+`;
+
+export const TextGroup = styled.Text`
+  font-size: 20px;
+`;
+
+export const ViewMonthText = styled.View`
+  justify-content: center;
+  align-items: center;
+  background-color: #fff;
+`;
+export const TextMonth = styled.Text`
+  font-size: 23px;
+  font-weight: bold;
+`;
