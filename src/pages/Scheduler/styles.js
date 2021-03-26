@@ -153,6 +153,8 @@ export const MonthHitGroup = styled.TouchableOpacity`
 
   background-color: ${(props) =>
     props.status === `unavailable` ? `#ce4a4a` : `#a8a8b3`};
+
+  ${(props) => props.xClicked === props.xItem && `background-color: #04d361`}
 `;
 
 export const MonthHit = styled.Text`

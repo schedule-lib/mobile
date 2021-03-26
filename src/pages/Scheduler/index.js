@@ -34,7 +34,7 @@ import {
   ButtonText,
 } from "./styles";
 
-const Scheduler = () => {
+const Scheduler = ({ navigation }) => {
   const [isCompleted, setIsCompleted] = useState(false);
   const [province, setProvince] = useState(null);
   const [servicePoint, setServicePoint] = useState(null);
@@ -91,7 +91,12 @@ const Scheduler = () => {
 
   // CALENDAR FUNCTIONS
   const handleCompleted = useCallback(() => {
-    if (province?.value && servicePoint?.value && month.name && dayChoosed) {
+    if (
+      province?.value &&
+      servicePoint?.value &&
+      month.name &&
+      dayChoosed !== 0
+    ) {
       setIsCompleted(true);
     }
   }, [dayChoosed]);
@@ -146,6 +151,13 @@ const Scheduler = () => {
 
       return 0;
     }
+  }
+  function handleNavigate() {
+    if (dayChoosed === 0) {
+      Alert.alert("ATENÇÃO", "preenche todos os campos");
+      return;
+    }
+    navigation.navigate("Timer");
   }
 
   useEffect(() => {
@@ -210,12 +222,14 @@ const Scheduler = () => {
           </HitMonthContainer>
 
           <HitMapWeekContainer>
-            <Text>Selecione o dia: {dayChoosed}</Text>
+            <Text>Selecione o dia</Text>
             <DaysHitMap>
               {days.map((item) => (
                 <MonthHitGroup
                   onPress={() => handleDay(+item.day, item.status)}
                   key={item.day}
+                  xClicked={dayChoosed}
+                  xItem={item.day}
                   status={item.status}
                 >
                   <MonthHit>{item.day}</MonthHit>
@@ -224,7 +238,7 @@ const Scheduler = () => {
             </DaysHitMap>
 
             {isCompleted && (
-              <Button disabled={handleButtonStatus()}>
+              <Button disabled={handleButtonStatus()} onPress={handleNavigate}>
                 <ButtonText>Escolher horário</ButtonText>
               </Button>
             )}
