@@ -36,7 +36,7 @@ export const Picker = styled.View`
   border-radius: 6px;
 
   width: 100%;
-  height: 30px;
+  height: 50px;
   background-color: #fff;
   border: 1px solid rgba(0, 0, 0, 0.5);
 `;
@@ -81,11 +81,50 @@ export const TextGroup = styled.Text`
 `;
 
 export const ViewMonthText = styled.View`
+  width: 87%;
+
   justify-content: center;
   align-items: center;
-  background-color: #fff;
+  margin: 0.8px auto;
+
+  background-color: #e1e1e6;
+  border-radius: 3px;
 `;
 export const TextMonth = styled.Text`
   font-size: 23px;
   font-weight: bold;
+`;
+
+//  DESCRIPTION:
+
+export const DescriptionContainer = styled.View`
+  flex-direction: row;
+  flex-wrap: wrap;
+  padding: 3px;
+`;
+
+export const WhiteGroup = styled.View`
+  background-color: #666666;
+  border-radius: 6px;
+  padding: 3px;
+  margin: 5px;
+`;
+
+export const RedGroup = styled.View`
+  background-color: #e83f5b;
+  border-radius: 6px;
+  padding: 5px;
+  margin: 5px;
+`;
+
+export const GreenGroup = styled.View`
+  background-color: #4cd62b;
+  border-radius: 6px;
+  padding: 5px;
+  margin: 5px;
+`;
+export const TextWhite = styled.Text`
+  font-size: 16px;
+  font-weight: bold;
+  color: #fff;
 `;

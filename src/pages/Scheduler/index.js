@@ -19,6 +19,11 @@ import {
   TextGroup,
   ViewMonthText,
   TextMonth,
+  DescriptionContainer,
+  WhiteGroup,
+  RedGroup,
+  GreenGroup,
+  TextWhite,
 } from "./styles";
 
 const Scheduler = () => {
@@ -83,21 +88,24 @@ const Scheduler = () => {
             </ViewMonthText>
           </HitMonthContainer>
 
-          {/* <HitMapWeekContainer></HitMapWeekContainer>
+          {/* <HitMapWeekContainer></HitMapWeekContainer> */}
 
-          <DescriptionContainer>
-            <WhiteGroup>
-              <Text>Disponível</Text>
-            </WhiteGroup>
+          <View>
+            <Text>Descrição dos dias:</Text>
+            <DescriptionContainer>
+              <WhiteGroup>
+                <TextWhite>Disponível</TextWhite>
+              </WhiteGroup>
 
-            <RedGroup>
-              <Text>Indisponível</Text>
-            </RedGroup>
+              <RedGroup>
+                <Text>Indisponível</Text>
+              </RedGroup>
 
-            <GreenGroup>
-              <Text>Selecionado</Text>
-            </GreenGroup>
-          </DescriptionContainer> */}
+              <GreenGroup>
+                <TextWhite>Selecionado</TextWhite>
+              </GreenGroup>
+            </DescriptionContainer>
+          </View>
         </HitMapContainer>
       </ScrollView>
     </Container>
