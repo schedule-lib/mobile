@@ -143,16 +143,36 @@ export const DaysHitMap = styled.View`
   margin: 0 auto;
 `;
 
-export const MonthHitGroup = styled.View`
-  border: 1px solid black;
+export const MonthHitGroup = styled.TouchableOpacity`
+  border: 0.4px solid black;
   justify-content: center;
   align-items: center;
   width: 70px;
   height: 40px;
 
-  background-color: #ffcd1e;
+  background-color: ${(props) =>
+    props.status === `unavailable` ? `#ce4a4a` : `#a8a8b3`};
 `;
 
 export const MonthHit = styled.Text`
   font-size: 20px;
+`;
+
+export const Button = styled.TouchableOpacity`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  height: 44px;
+  width: 90%;
+  background-color: #5929cc;
+  border-radius: 6px;
+
+  margin: 15px auto;
+`;
+
+export const ButtonText = styled.Text`
+  color: #ffffff;
+  font-weight: bold;
+  font-size: 18px;
 `;

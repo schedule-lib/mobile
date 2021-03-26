@@ -1,6 +1,8 @@
-import React, { useState } from "react";
-import { StyleSheet, ScrollView, View } from "react-native";
+import React, { useState, useCallback } from "react";
+import { StyleSheet, ScrollView, View, Alert } from "react-native";
 import RNPickerSelect from "react-native-picker-select";
+
+import { determineCurrentMonth } from "../../utils";
 
 import {
   Container,
@@ -28,11 +30,21 @@ import {
   DaysHitMap,
   MonthHitGroup,
   MonthHit,
+  Button,
+  ButtonText,
 } from "./styles";
 
 const Scheduler = () => {
-  const [province, setProvince] = useState("CIDADE");
-  const [servicePoint, setServicePoint] = useState("PONTO");
+  const [isCompleted, setIsCompleted] = useState(false);
+  const [province, setProvince] = useState(null);
+  const [servicePoint, setServicePoint] = useState(null);
+  const [month, setMonth] = useState(() => {
+    const date = new Date();
+    const currentMonth = date.getMonth() + 1;
+
+    return determineCurrentMonth(currentMonth);
+  });
+  const [dayChoosed, setDayChoosed] = useState(0);
 
   const days = [
     { day: 1, status: "available" },
@@ -67,6 +79,79 @@ const Scheduler = () => {
     { day: 30, status: "available" },
   ];
 
+  const provinceOptions = [
+    { value: "Luanda", label: "Luanda" },
+    { value: "Benguela", label: "Benguela" },
+  ];
+  const serviceOptions = [
+    { value: "kilamba kiaxi", label: "Kilamba kiaxi" },
+    { value: "Murro bento", label: "Murro bento" },
+    { label: "Simeone XYZ", value: "Simeone XYZ" },
+  ];
+
+  // CALENDAR FUNCTIONS
+  const handleCompleted = useCallback(
+    (day) => {
+      setDayChoosed(+day);
+      if (province?.value && servicePoint?.value && month.name && dayChoosed) {
+        setIsCompleted(true);
+      }
+    },
+    [dayChoosed]
+  );
+  function handleButtonStatus() {
+    if (province?.value && servicePoint?.value) {
+      return false;
+    }
+
+    return true;
+  }
+  function handleNextMonth() {
+    if (month.id === 12) {
+      return;
+    }
+
+    const currentMonth = month.id;
+    const nextMonth = currentMonth + 1;
+
+    setMonth(() => determineCurrentMonth(nextMonth));
+  }
+  function handlePrevMonth() {
+    if (month.id === 1) {
+      return;
+    }
+
+    const currentMonth = month.id;
+    const prevMonth = currentMonth - 1;
+
+    setMonth(() => determineCurrentMonth(prevMonth));
+  }
+  const handleChangeProvince = (selectedOption) => {
+    setProvince({
+      value: selectedOption,
+      label: selectedOption,
+    });
+  };
+  const handleChangeService = (selectedOption) => {
+    setServicePoint({
+      value: selectedOption,
+      label: selectedOption,
+    });
+  };
+  function handleDay(day, status) {
+    if (status === "available") {
+      setDayChoosed(+day);
+
+      return 1;
+    }
+    if (status === "unavailable") {
+      setDayChoosed(0);
+      Alert.alert("ATENÇAO", "Seleciona apenas DIA DISPONÍVEL");
+
+      return 0;
+    }
+  }
+
   return (
     <Container>
       <ScrollView contentContainerStyle={styles.scrollview}>
@@ -79,14 +164,11 @@ const Scheduler = () => {
             <Local>
               <Text>Provincia de atendimento</Text>
               <RNPickerSelect
-                onValueChange={(value) => setProvince(value)}
-                items={[
-                  { label: "Luanda", value: "luanda", default: true },
-                  { label: "Benguela", value: "benguela" },
-                ]}
+                onValueChange={(value) => handleChangeProvince(value)}
+                items={provinceOptions}
               >
                 <Picker>
-                  <TextPicker>{province}</TextPicker>
+                  <TextPicker>{province?.value || "selecionar"}</TextPicker>
                 </Picker>
               </RNPickerSelect>
             </Local>
@@ -94,15 +176,11 @@ const Scheduler = () => {
             <Local>
               <Text>Ponto de atendimento</Text>
               <RNPickerSelect
-                onValueChange={(value) => setServicePoint(value)}
-                items={[
-                  { label: "Murro bento", value: "Murro bento" },
-                  { label: "Kilamba kiaxi", value: "Kilamba kiaxi" },
-                  { label: "Simeone XYZ", value: "Simeone XYZ", default: true },
-                ]}
+                onValueChange={(value) => handleChangeService(value)}
+                items={serviceOptions}
               >
                 <Picker>
-                  <TextPicker>{servicePoint}</TextPicker>
+                  <TextPicker>{servicePoint?.value || "selecionar"}</TextPicker>
                 </Picker>
               </RNPickerSelect>
             </Local>
@@ -112,28 +190,44 @@ const Scheduler = () => {
         <HitMapContainer>
           <HitMonthContainer>
             <ViewMonth>
-              <ButtonGroup>
+              <ButtonGroup
+                disabled={handleButtonStatus()}
+                onPress={handlePrevMonth}
+              >
                 <TextGroup>anterior</TextGroup>
               </ButtonGroup>
-              <ButtonGroup>
+              <ButtonGroup
+                disabled={handleButtonStatus()}
+                onPress={handleNextMonth}
+              >
                 <TextGroup>Próximo</TextGroup>
               </ButtonGroup>
             </ViewMonth>
 
             <ViewMonthText>
-              <TextMonth>FEVEREIRO</TextMonth>
+              <TextMonth>{month.name}</TextMonth>
             </ViewMonthText>
           </HitMonthContainer>
 
           <HitMapWeekContainer>
-            <Text>Selecione o dia:</Text>
+            <Text>Selecione o dia: {dayChoosed}</Text>
             <DaysHitMap>
               {days.map((item) => (
-                <MonthHitGroup key={item.day}>
+                <MonthHitGroup
+                  onPress={() => handleDay(+item.day, item.status)}
+                  key={item.day}
+                  status={item.status}
+                >
                   <MonthHit>{item.day}</MonthHit>
                 </MonthHitGroup>
               ))}
             </DaysHitMap>
+
+            {isCompleted && (
+              <Button>
+                <ButtonText>Escolher horário</ButtonText>
+              </Button>
+            )}
           </HitMapWeekContainer>
 
           <View>
