@@ -7,6 +7,14 @@ import {
   ReportBody,
   Header,
   Hr,
+  ReportContent,
+  Div,
+  Strong,
+  P,
+  ListDetail,
+  Detail,
+  Span,
+  Spanless,
   TextLess,
   Button,
   ButtonText,
@@ -26,6 +34,57 @@ function Reports() {
           <TextLess>Serviço de agendamento</TextLess>
           <Hr></Hr>
         </Header>
+
+        <ReportContent>
+          <Div>
+            <Strong>Código: 234589034850986</Strong>
+            <P>Campinas/SP, 12/03/2020</P>
+          </Div>
+
+          <Div>
+            <Strong>DADOS PESSOAIS</Strong>
+            <ListDetail>
+              <Detail>
+                <Span>Número do BI:</Span>
+                <Spanless>22354578980085632345</Spanless>
+              </Detail>
+
+              <Detail>
+                <Span>Nome completo:</Span>
+                <Spanless>elias alexandre</Spanless>
+              </Detail>
+
+              <Detail>
+                <Span>Data de nascimento:</Span>
+                <Spanless>07/03/2021</Spanless>
+              </Detail>
+            </ListDetail>
+          </Div>
+
+          <Div>
+            <Strong>DADOS DO AGENDAMENTO</Strong>
+            <ListDetail>
+              <Detail>
+                <Span>Data/Hora do Agendamento:</Span>
+                <Spanless>22/01/2020 14:30</Spanless>
+              </Detail>
+
+              <Detail>
+                <Span>Posto:</Span>
+                <Spanless>PSD/WSD/DWE - Posto de criação de BI</Spanless>
+              </Detail>
+            </ListDetail>
+          </Div>
+
+          <Div>
+            <Strong>ENDEREÇO DO POSTO</Strong>
+            <P>
+              Rodovia Santos Dumont, Km 66, Edificio garagem, Bairro parque
+              viracopos, Aeroporto internacional de viracopos.
+            </P>
+            <P>Campinas - SP - 13183344</P>
+          </Div>
+        </ReportContent>
       </ReportBody>
 
       <Button>

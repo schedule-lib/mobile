@@ -35,6 +35,7 @@ function Switch() {
       <Stack.Screen
         options={{
           title: "Protocolo de atendimento",
+          headerShown: false,
         }}
         name="Reports"
         component={Reports}

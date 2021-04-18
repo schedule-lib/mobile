@@ -23,6 +23,48 @@ export const Hr = styled.View`
   margin-top: 10px;
 `;
 
+// MIDDLE CONTENT: View
+export const ReportContent = styled.ScrollView`
+  padding: 20px;
+`;
+
+export const Div = styled.View`
+  margin-bottom: 10px;
+`;
+
+export const Strong = styled.Text`
+  font-weight: bold;
+  font-size: 20px;
+  margin-top: 5px;
+`;
+
+export const P = styled.Text`
+  font-size: 18px;
+  margin-top: 5px;
+`;
+
+export const ListDetail = styled.View``;
+
+export const Detail = styled.View`
+  flex-direction: row;
+  flex-wrap: wrap;
+  margin-bottom: 5px;
+
+  align-items: center;
+`;
+
+export const Span = styled.Text`
+  margin-right: 5px;
+  font-size: 16px;
+  justify-content: center;
+`;
+
+export const Spanless = styled.Text`
+  margin-right: 0;
+  font-size: 15px;
+`;
+
+// BOTTOM CONTENT: Button
 export const TextLess = styled.Text`
   font-size: 18px;
   color: #121212;
