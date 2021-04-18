@@ -1,15 +1,20 @@
-import React from "react";
+import React, { useState } from "react";
+import { captureScreen } from "react-native-view-shot";
 
-import { Image, StyleSheet } from "react-native";
+import { Image, StyleSheet, Alert, Text, CameraRoll } from "react-native";
 
 import {
   Container,
   ReportBody,
   Header,
+  ScreenshotContainer,
+  Screenshot,
+  Closer,
   Hr,
   ReportContent,
   Div,
   Strong,
+  Strongless,
   P,
   ListDetail,
   Detail,
@@ -21,8 +26,47 @@ import {
 } from "./styles";
 
 function Reports() {
+  const [imageURI, setImageURI] = useState(null);
+  const [, setSavedImagePath] = useState("");
+  const [isImageView, setIsImageView] = useState(false);
+
+  const takeScreenShot = () => {
+    captureScreen({
+      format: "jpg",
+      quality: 0.8,
+    }).then(
+      (uri) => {
+        setSavedImagePath(uri);
+        setImageURI(uri);
+        setIsImageView(true);
+      },
+      (error) => Alert.alert("Tente novamente", error)
+    );
+  };
+
+  function closeScreenshot() {
+    if (isImageView) setIsImageView(false);
+  }
+
   return (
-    <Container>
+    <Container isSaving={isImageView}>
+      {isImageView && (
+        <ScreenshotContainer>
+          <Strong>Imagem salva na galeria</Strong>
+
+          <Screenshot
+            source={{ uri: imageURI }}
+            style={{
+              resizeMode: "contain",
+            }}
+          />
+
+          <Closer onPress={closeScreenshot}>
+            <Strongless>fechar</Strongless>
+          </Closer>
+        </ScreenshotContainer>
+      )}
+
       <ReportBody>
         <Header>
           <Image
@@ -87,8 +131,8 @@ function Reports() {
         </ReportContent>
       </ReportBody>
 
-      <Button>
-        <ButtonText>Baixar uma cópia</ButtonText>
+      <Button onPress={takeScreenShot} isSaving={isImageView}>
+        <ButtonText isSaving={isImageView}>Baixar uma cópia</ButtonText>
       </Button>
     </Container>
   );

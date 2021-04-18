@@ -1,12 +1,13 @@
 import styled from "styled-components/native";
 
 export const Container = styled.SafeAreaView`
+  position: relative;
+
   flex: 1;
   justify-content: flex-start;
-  /* align-items: center; */
   padding: 10px;
 
-  background-color: #fff;
+  background-color: ${(props) => (props.isSaving ? `#323232` : `#fff`)};
 `;
 export const ReportBody = styled.View``;
 
@@ -36,6 +37,10 @@ export const Strong = styled.Text`
   font-weight: bold;
   font-size: 20px;
   margin-top: 5px;
+`;
+export const Strongless = styled.Text`
+  font-weight: bold;
+  font-size: 20px;
 `;
 
 export const P = styled.Text`
@@ -74,20 +79,49 @@ export const TextLess = styled.Text`
 `;
 
 export const Button = styled.TouchableOpacity`
-  display: flex;
-  display: flex;
+  display: ${(props) => (props.isSaving ? `none` : `flex`)};
   align-items: center;
   justify-content: center;
 
   height: 44px;
   width: 90%;
-  background-color: ${(props) => (props.disabled ? `#dedede` : `#5929cc`)};
+  background-color: ${(props) => (props.isSaving ? `#323232` : `#5929cc`)};
   border-radius: 6px;
 
   margin: 15px auto;
 `;
 export const ButtonText = styled.Text`
-  color: #ffffff;
+  color: ${(props) => (props.isSaving ? `#121212` : `#fff`)};
   font-weight: bold;
   font-size: 18px;
+`;
+
+// SCRRENSHOT SAVED_TO_IMAGE_PATH
+export const ScreenshotContainer = styled.View`
+  z-index: 1;
+
+  position: absolute;
+  bottom: 30px;
+  left: 20px;
+
+  background-color: #dedede;
+  border-radius: 6px;
+  max-height: 500px;
+  /* padding: 0 10px; */
+`;
+
+export const Screenshot = styled.Image`
+  width: 200px;
+  height: 300px;
+  margin: 0 15px;
+  margin-top: 5px;
+`;
+
+export const Closer = styled.TouchableOpacity`
+  width: 100%;
+  padding: 10px;
+  border: 1px solid rgba(0, 0, 0, 0.5);
+
+  justify-content: center;
+  align-items: center;
 `;
