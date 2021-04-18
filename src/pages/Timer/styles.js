@@ -11,6 +11,18 @@ export const Container = styled.SafeAreaView`
 
 export const Box = styled.View`
   border: 1px solid #29292e;
+  border-radius: 4px;
+
+  margin: 0 10px;
+  padding: 5px;
+`;
+
+export const TextLess = styled.Text`
+  font-size: 18px;
+  color: #121212;
+
+  margin: 0 5px;
+  padding: 2px 5px;
 `;
 
 export const HourHitContainer = styled.View`

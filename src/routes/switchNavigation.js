@@ -4,6 +4,7 @@ import { createStackNavigator } from "@react-navigation/stack";
 import Landing from "../pages/Landing";
 import Scheduler from "../pages/Scheduler";
 import Timer from "../pages/Timer";
+import Reports from "../pages/Reports";
 
 const Stack = createStackNavigator();
 
@@ -30,6 +31,13 @@ function Switch() {
         }}
         name="Timer"
         component={Timer}
+      />
+      <Stack.Screen
+        options={{
+          title: "Protocolo de atendimento",
+        }}
+        name="Reports"
+        component={Reports}
       />
     </Stack.Navigator>
   );

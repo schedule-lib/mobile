@@ -32,3 +32,10 @@
     --color-gradient: linear-gradient(89.11deg,rgba(113,104,212,0.1607843137254902) 1.53%,rgba(43,200,227,0.1607843137254902) 98.35%);
     --color-gradient-started: linear-gradient(90deg,rgba(4,211,97,0.611764705882353),rgba(130,87,230,0.611764705882353));
     --text: 18px;
+    --google-blue-50: rgb(232, 240, 254);
+    --google-blue-300: rgb(138, 180, 248);
+    --google-blue-600: rgb(26, 115, 232);
+    --google-blue-900: rgb(23, 78, 166);
+    --google-grey-200: rgb(232, 234, 237);
+    --google-grey-800: rgb(60, 64, 67);
+    --google-grey-900: rgb(32, 33, 36);

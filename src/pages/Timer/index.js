@@ -4,6 +4,7 @@ import { Text, StyleSheet, Alert } from "react-native";
 import {
   Container,
   Box,
+  TextLess,
   HourHitContainer,
   HourHitGroup,
   HourHit,
@@ -12,8 +13,8 @@ import {
   ButtonText,
 } from "./styles";
 
-function Timer() {
-  const [hourSelected, setHourSelected] = useState(Number(0));
+function Timer({ navigation }) {
+  const [hourSelected, setHourSelected] = useState("??");
   const [isCompleted, setIsCompleted] = useState(true);
 
   const hours = [
@@ -41,7 +42,7 @@ function Timer() {
 
   function handleSelectHour(hour, status) {
     if (status === "available") {
-      setHourSelected(+hour);
+      setHourSelected(hour);
 
       return 1;
     }
@@ -52,10 +53,18 @@ function Timer() {
       return 0;
     }
   }
-  function completeSchedule() {
+  async function completeSchedule() {
     if (hourSelected !== 0) {
       setIsCompleted(true);
-      Aler.alert("Finalizado", "HORÁRIO RESERVADO");
+      Alert.alert("Finalizado", "HORÁRIO RESERVADO", [
+        {
+          text: "ver protocolo",
+          style: "default",
+          onPress() {
+            navigation.navigate("Reports");
+          },
+        },
+      ]);
 
       return 1;
     }
@@ -70,8 +79,8 @@ function Timer() {
       <Box styke={styles.box}>
         <Text style={styles.plainText}>renovar BI</Text>
       </Box>
-      <Text style={styles.plainText}>Dia 03 de março de 2021</Text>
-      <Text style={styles.plainText}>as 17:30</Text>
+      <TextLess style={styles.plainText}>Dia 03 de março de 2021</TextLess>
+      <TextLess style={styles.plainText}>as {hourSelected} horas</TextLess>
 
       <HourHitContainer>
         <Text style={styles.strong}>Horários disponíveis</Text>
@@ -81,7 +90,7 @@ function Timer() {
             <HourHit
               key={item.id}
               status={item.status}
-              onPress={() => handleSelectHour(item.id, item.status)}
+              onPress={() => handleSelectHour(item.hour, item.status)}
               xClicked={hourSelected}
               xItem={item.id}
             >
