@@ -2,11 +2,25 @@ import styled from "styled-components/native";
 
 export const Container = styled.SafeAreaView`
   flex: 1;
-  background-color: #fff;
   justify-content: flex-start;
   /* align-items: center; */
-
   padding: 10px;
+
+  background-color: #fff;
+`;
+export const ReportBody = styled.View``;
+
+export const Header = styled.View`
+  justify-content: center;
+  align-items: center;
+  max-height: 120px;
+`;
+
+export const Hr = styled.View`
+  border: 0.1px solid rgba(0, 0, 0, 0.5);
+  background-color: #000000;
+  width: 95%;
+  margin-top: 10px;
 `;
 
 export const TextLess = styled.Text`
